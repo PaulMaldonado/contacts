@@ -1,0 +1,41 @@
+<%- include("../partials/head.ejs") %>
+<%- include("../partials/navigation.ejs") %>
+
+<div class="container">
+  <div class="row mt-4">
+    <div class="col-md-12 col-sm-12 col-lg-12 col-xl-12 mx-auto">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Nombre completo</th>
+            <th scope="col">Correo electronico</th>
+            <th scope="col">Número de telefono</th>
+            <th scope="col">Editar</th>
+            <th scope="col">Eliminar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if(!results) { %>
+            <h2>No hay aun contactos registrados.</h2>
+          <% } else { %>
+            <tr>
+              <% results.forEach(function(contacts) { %> 
+                <th><%= contacts.name %></th>
+                <th><%= contacts.email %></th>
+                <th><%= contacts.phone %> </th>
+                <th>
+                  <a href="" class="btn btn-info">Editar</a>
+                </th>
+                <th>
+                  <a href="/delete/<%= contacts.id %>" class="btn btn-danger">Eliminar</a>
+                </th>
+              <% }); %> 
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<%- include("../partials/footer.ejs") %> 
