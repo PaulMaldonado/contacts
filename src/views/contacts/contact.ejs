@@ -15,8 +15,8 @@
           </tr>
         </thead>
         <tbody>
-          <% if(!results) { %>
-            <h2>No hay aun contactos registrados.</h2>
+          <% if(results.length === 0) { %>
+            <h2 class="card-title text-center mt-3">No hay aun contactos registrados.</h2>
           <% } else { %>
             <tr>
               <% results.forEach(function(contacts) { %> 
@@ -24,7 +24,7 @@
                 <th><%= contacts.email %></th>
                 <th><%= contacts.phone %> </th>
                 <th>
-                  <a href="" class="btn btn-info">Editar</a>
+                  <a href="/edit/<%= contacts.id %> " class="btn btn-info">Editar</a>
                 </th>
                 <th>
                   <a href="/delete/<%= contacts.id %>" class="btn btn-danger">Eliminar</a>

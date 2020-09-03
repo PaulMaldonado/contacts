@@ -20,7 +20,7 @@ app.use('/add', router);
 app.use('/contact', router);
 
 // Archivos estaticos
-app.use('/static', express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 

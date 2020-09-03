@@ -57,4 +57,39 @@ router.get('/delete/:id', (req, res) => {
 
 });
 
+// Ruta get para acceder al formulario de editar
+router.get('/edit/:id', (req, res) => {
+ const id = req.params.id;
+
+ const sql = `SELECT * FROM contact WHERE id = ${id}`;
+ db.query(sql, (error, result) => {
+  if(error) throw error;
+
+  res.render('contacts/edit', {
+    result: result[0]
+  });
+
+ });
+
+});
+
+// Ruta post para enviar los datos editados a la base de datos
+router.post('/edit/:id', (req, res) => {
+  const id = req.params.id;
+
+  const editContacts = {
+    name: req.body.name,
+    email: req.body.email,
+    phone: req.body.phone
+  };
+
+  const sql = `UPDATE contact SET ? WHERE id = ${id}`;
+  db.query(sql, editContacts, (error, result) => {
+    if(error) throw error;
+
+    res.redirect('/contact');
+  });
+
+});
+
 module.exports = router;
